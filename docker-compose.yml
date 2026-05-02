@@ -1,0 +1,29 @@
+services:
+  ppc-app:
+    build: .
+    image: proxy-provider-converter:latest
+    container_name: ppc-app
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+      - HOST=0.0.0.0
+    expose:
+      - "3000"
+    networks:
+      - ppc
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: ppc-cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - ppc-app
+    networks:
+      - ppc
+
+networks:
+  ppc:
+    driver: bridge

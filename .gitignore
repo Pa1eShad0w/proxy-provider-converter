@@ -35,3 +35,6 @@ yarn-error.log*
 .vercel
 /dist
 /config-examples
+
+# build artifacts
+server.bundle.mjs
