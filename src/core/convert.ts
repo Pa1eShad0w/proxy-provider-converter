@@ -157,8 +157,7 @@ async function fetchConfig(url: string): Promise<string | null> {
   const result = await axios({
     url,
     headers: {
-      "User-Agent":
-        "ClashX Pro/1.72.0.4 (com.west2online.ClashXPro; build:1.72.0.4; macOS 12.0.1) Alamofire/5.4.4",
+      "User-Agent": "ClashMetaForAndroid/2.11.4.Meta",
     },
   });
 
